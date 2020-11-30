@@ -1,0 +1,878 @@
+{
+	"info": {
+		"_postman_id": "91128472-1c1a-46fd-8b77-d8a90847ca1b",
+		"name": "Reddit API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generate Access_Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bee35a3a-9754-4d0f-83c1-8bc573c650b4",
+						"exec": [
+							"let response1=pm.response.json();\r",
+							"pm.environment.set(\"redditToken\",response1.access_token);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"// let response2=pm.response.json();\r",
+							"// pm.environment.set(\"type\",response2.token_type);\r",
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.token_type).is.to.equal(\"\"); \r",
+							"  \r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "ks0WPn-1EaJi0Q",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "2n2LnfeTj9V4xudH0vDh1XN31XIEbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "rahulsahuu",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Mohini@12345678",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.reddit.com/api/v1/access_token",
+					"protocol": "https",
+					"host": [
+						"www",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Client ID and Client Secret Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b261fe2f-e6ec-46ae-9391-2ad37cdb61fd",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "2n2LnfeTj9V4xudH0vDh1XN31XIEbAzdgf",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ks0WPn-1EaJi0Qjhjh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "rahulsahuu",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Mohini@12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.reddit.com/api/v1/access_token",
+					"protocol": "https",
+					"host": [
+						"www",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "invalid username and password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb2bcf9f-f7e5-4863-9b66-e8ca78d1d219",
+						"exec": [
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"invalid_grant\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "2n2LnfeTj9V4xudH0vDh1XN31XIEbA",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ks0WPn-1EaJi0Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "rahulsahuu898889",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Mohini@123456789090",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.reddit.com/api/v1/access_token",
+					"protocol": "https",
+					"host": [
+						"www",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Identity of User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f0b9010-c165-4200-b009-a2bafb6db765",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type\", function () {\r",
+							"   pm.response.to.have.header(\"Content-Type\");\r",
+							"   pm.response.to.be.header(\"Content-Type\", \"application/json; charset=UTF-8\");\r",
+							"});\r",
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.subreddit.display_name).is.to.equal(\"12345rahul\"); \r",
+							"  \r",
+							"//  });\r",
+							" var jsonData = pm.response.json(); \r",
+							"pm.test(\"Verify Json values\", function () { \r",
+							"    pm.expect(jsonData.subreddit.display_name).is.to.equal(\"u_rahulsahuu\"); \r",
+							"  \r",
+							" });\r",
+							"//  let response2=pm.response.json();\r",
+							"// pm.environment.set(\"display name\",response2.subreddit.display_name);\r",
+							"\r",
+							"\r",
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.subreddit.display_name).is.to.equal(\"@!#$\"); \r",
+							"  \r",
+							"// });\r",
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.subreddit.display_name).is.to.equal(\"123_4567\"); \r",
+							"  \r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{redditToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oauth.reddit.com/api/v1/me\n",
+					"protocol": "https",
+					"host": [
+						"oauth",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"me\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "211eefc9-e9ac-4a97-a7c9-624e61c9aef6",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"  pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oauth.reddit.com/api/v1/me\n",
+					"protocol": "https",
+					"host": [
+						"oauth",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"me\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Trophies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a072c5c-d5f5-42d8-8b2e-45868c5987a2",
+						"exec": [
+							"var schema={\r",
+							"    \"$schema\":\"http://json-schema.org/draft-07/schema\",\r",
+							"    \"$id\": \"http://example.com/example.json\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"title\": \"The root schema\",\r",
+							"    \"description\": \"The root schema comprises the entire JSON document.\",\r",
+							"    \"default\": {},\r",
+							"    \"examples\": [\r",
+							"        {\r",
+							"            \"kind\": \"TrophyList\",\r",
+							"            \"data\": {\r",
+							"                \"trophies\": [\r",
+							"                    {\r",
+							"                        \"kind\": \"t6\",\r",
+							"                        \"data\": {\r",
+							"                            \"icon_70\": \"https://www.redditstatic.com/awards2/n00b-70.png\",\r",
+							"                            \"granted_at\": \"1605783984\",\r",
+							"                            \"url\": null,\r",
+							"                            \"icon_40\": \"https://www.redditstatic.com/awards2/n00b-40.png\",\r",
+							"                            \"name\": \"New User\",\r",
+							"                            \"award_id\": null,\r",
+							"                            \"id\": null,\r",
+							"                            \"description\": null\r",
+							"                        }\r",
+							"                    }\r",
+							"                ]\r",
+							"            }\r",
+							"        }\r",
+							"    ],\r",
+							"    \"required\": [\r",
+							"        \"kind\",\r",
+							"        \"data\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"kind\": {\r",
+							"            \"$id\": \"#/properties/kind\",\r",
+							"            \"type\": \"string\",\r",
+							"            \"title\": \"The kind schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": \"\",\r",
+							"            \"examples\": [\r",
+							"                \"TrophyList\"\r",
+							"            ]\r",
+							"        },\r",
+							"        \"data\": {\r",
+							"            \"$id\": \"#/properties/data\",\r",
+							"            \"type\": \"object\",\r",
+							"            \"title\": \"The data schema\",\r",
+							"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"            \"default\": {},\r",
+							"            \"examples\": [\r",
+							"                {\r",
+							"                    \"trophies\": [\r",
+							"                        {\r",
+							"                            \"kind\": \"t6\",\r",
+							"                            \"data\": {\r",
+							"                                \"icon_70\": \"https://www.redditstatic.com/awards2/n00b-70.png\",\r",
+							"                                \"granted_at\": 1605783984,\r",
+							"                                \"url\": null,\r",
+							"                                \"icon_40\": \"https://www.redditstatic.com/awards2/n00b-40.png\",\r",
+							"                                \"name\": \"New User\",\r",
+							"                                \"award_id\": null,\r",
+							"                                \"id\": null,\r",
+							"                                \"description\": null\r",
+							"                            }\r",
+							"                        }\r",
+							"                    ]\r",
+							"                }\r",
+							"            ],\r",
+							"            \"required\": [\r",
+							"                \"trophies\"\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"trophies\": {\r",
+							"                    \"$id\": \"#/properties/data/properties/trophies\",\r",
+							"                    \"type\": \"array\",\r",
+							"                    \"title\": \"The trophies schema\",\r",
+							"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                    \"default\": [],\r",
+							"                    \"examples\": [\r",
+							"                        [\r",
+							"                            {\r",
+							"                                \"kind\": \"t6\",\r",
+							"                                \"data\": {\r",
+							"                                    \"icon_70\": \"https://www.redditstatic.com/awards2/n00b-70.png\",\r",
+							"                                    \"granted_at\": 1605783984,\r",
+							"                                    \"url\": null,\r",
+							"                                    \"icon_40\": \"https://www.redditstatic.com/awards2/n00b-40.png\",\r",
+							"                                    \"name\": \"New User\",\r",
+							"                                    \"award_id\": null,\r",
+							"                                    \"id\": null,\r",
+							"                                    \"description\": null\r",
+							"                                }\r",
+							"                            }\r",
+							"                        ]\r",
+							"                    ],\r",
+							"                    \"additionalItems\": true,\r",
+							"                    \"items\": {\r",
+							"                        \"$id\": \"#/properties/data/properties/trophies/items\",\r",
+							"                        \"anyOf\": [\r",
+							"                            {\r",
+							"                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0\",\r",
+							"                                \"type\": \"object\",\r",
+							"                                \"title\": \"The first anyOf schema\",\r",
+							"                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                \"default\": {},\r",
+							"                                \"examples\": [\r",
+							"                                    {\r",
+							"                                        \"kind\": \"t6\",\r",
+							"                                        \"data\": {\r",
+							"                                            \"icon_70\": \"https://www.redditstatic.com/awards2/n00b-70.png\",\r",
+							"                                            \"granted_at\": 1605783984,\r",
+							"                                            \"url\": null,\r",
+							"                                            \"icon_40\": \"https://www.redditstatic.com/awards2/n00b-40.png\",\r",
+							"                                            \"name\": \"New User\",\r",
+							"                                            \"award_id\": null,\r",
+							"                                            \"id\": null,\r",
+							"                                            \"description\": null\r",
+							"                                        }\r",
+							"                                    }\r",
+							"                                ],\r",
+							"                                \"required\": [\r",
+							"                                    \"kind\",\r",
+							"                                    \"data\"\r",
+							"                                ],\r",
+							"                                \"properties\": {\r",
+							"                                    \"kind\": {\r",
+							"                                        \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/kind\",\r",
+							"                                        \"type\": \"string\",\r",
+							"                                        \"title\": \"The kind schema\",\r",
+							"                                        \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                        \"default\": \"\",\r",
+							"                                        \"examples\": [\r",
+							"                                            \"t6\"\r",
+							"                                        ]\r",
+							"                                    },\r",
+							"                                    \"data\": {\r",
+							"                                        \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data\",\r",
+							"                                        \"type\": \"object\",\r",
+							"                                        \"title\": \"The data schema\",\r",
+							"                                        \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                        \"default\": {},\r",
+							"                                        \"examples\": [\r",
+							"                                            {\r",
+							"                                                \"icon_70\": \"https://www.redditstatic.com/awards2/n00b-70.png\",\r",
+							"                                                \"granted_at\": 1605783984,\r",
+							"                                                \"url\": null,\r",
+							"                                                \"icon_40\": \"https://www.redditstatic.com/awards2/n00b-40.png\",\r",
+							"                                                \"name\": \"New User\",\r",
+							"                                                \"award_id\": null,\r",
+							"                                                \"id\": null,\r",
+							"                                                \"description\": null\r",
+							"                                            }\r",
+							"                                        ],\r",
+							"                                        \"required\": [\r",
+							"                                            \"icon_70\",\r",
+							"                                            \"granted_at\",\r",
+							"                                            \"url\",\r",
+							"                                            \"icon_40\",\r",
+							"                                            \"name\",\r",
+							"                                            \"award_id\",\r",
+							"                                            \"id\",\r",
+							"                                            \"description\"\r",
+							"                                        ],\r",
+							"                                        \"properties\": {\r",
+							"                                            \"icon_70\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/icon_70\",\r",
+							"                                                \"type\": \"string\",\r",
+							"                                                \"title\": \"The icon_70 schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": \"\",\r",
+							"                                                \"examples\": [\r",
+							"                                                    \"https://www.redditstatic.com/awards2/n00b-70.png\"\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"granted_at\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/granted_at\",\r",
+							"                                                \"type\": \"integer\",\r",
+							"                                                \"title\": \"The granted_at schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": 0,\r",
+							"                                                \"examples\": [\r",
+							"                                                    1605783984\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"url\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/url\",\r",
+							"                                                \"type\": \"null\",\r",
+							"                                                \"title\": \"The url schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": null,\r",
+							"                                                \"examples\": [\r",
+							"                                                    null\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"icon_40\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/icon_40\",\r",
+							"                                                \"type\": \"string\",\r",
+							"                                                \"title\": \"The icon_40 schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": \"\",\r",
+							"                                                \"examples\": [\r",
+							"                                                    \"https://www.redditstatic.com/awards2/n00b-40.png\"\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"name\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/name\",\r",
+							"                                                \"type\": \"string\",\r",
+							"                                                \"title\": \"The name schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": \"\",\r",
+							"                                                \"examples\": [\r",
+							"                                                    \"New User\"\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"award_id\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/award_id\",\r",
+							"                                                \"type\": \"null\",\r",
+							"                                                \"title\": \"The award_id schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": null,\r",
+							"                                                \"examples\": [\r",
+							"                                                    null\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"id\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/id\",\r",
+							"                                                \"type\": \"null\",\r",
+							"                                                \"title\": \"The id schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": null,\r",
+							"                                                \"examples\": [\r",
+							"                                                    null\r",
+							"                                                ]\r",
+							"                                            },\r",
+							"                                            \"description\": {\r",
+							"                                                \"$id\": \"#/properties/data/properties/trophies/items/anyOf/0/properties/data/properties/description\",\r",
+							"                                                \"type\": \"null\",\r",
+							"                                                \"title\": \"The description schema\",\r",
+							"                                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+							"                                                \"default\": null,\r",
+							"                                                \"examples\": [\r",
+							"                                                    null\r",
+							"                                                ]\r",
+							"                                            }\r",
+							"                                        },\r",
+							"                                        \"additionalProperties\": true\r",
+							"                                    }\r",
+							"                                },\r",
+							"                                \"additionalProperties\": true\r",
+							"                            }\r",
+							"                        ]\r",
+							"                    }\r",
+							"                }\r",
+							"            },\r",
+							"            \"additionalProperties\": true\r",
+							"        }\r",
+							"    },\r",
+							"    \"additionalProperties\": true\r",
+							"}\r",
+							" pm.test('GET api/Capacity - Schema is valid', function() {\r",
+							"    data = pm.response.json();\r",
+							"    var results = tv4.validateMultiple(data, schema);\r",
+							"\r",
+							"    pm.expect(results.valid).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type\", function () {\r",
+							"   pm.response.to.have.header(\"Content-Type\");\r",
+							"   pm.response.to.be.header(\"Content-Type\", \"application/json; charset=UTF-8\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"// let response3=pm.response.json();\r",
+							"// pm.environment.set(\"data icon_70\",response3.data.trophies[0].data.icon_70);\r",
+							"\r",
+							"// let response4=pm.response.json();\r",
+							"// pm.environment.set(\"data.icon_40\",response3.data.trophies[0].data.icon_40);\r",
+							"\r",
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.data.trophies[0].data.icon_70).is.to.equal(\"https://www.redditstatic.com/awards2/n00b-70.png\"); \r",
+							"  \r",
+							"// });\r",
+							"//var jsonData = pm.response.json(); \r",
+							"//pm.test(\"Verify Json values\", function () { \r",
+							"  //  pm.expect(jsonData.data.trophies[0].data.icon_70).is.to.equal(\"https://www.redditstatic.//com/awards2/n00b-70.jpg\"); \r",
+							"  \r",
+							" //});\r",
+							"\r",
+							"  \r",
+							"\r",
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.data.trophies[0].data.icon_40).is.to.equal(\"https://www.redditstatic.com/awards2/n00b-40.png\"); \r",
+							"  \r",
+							"// });\r",
+							"\r",
+							"//var jsonData = pm.response.json(); \r",
+							"//pm.test(\"Verify Json values\", function () { \r",
+							"   // pm.expect(jsonData.data.trophies[0].data.icon_40).is.to.equal(\"https://www.redditstatic.////com/awards2/n00b-40.jpg\"); \r",
+							"  \r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{redditToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oauth.reddit.com/api/v1/me/trophies",
+					"protocol": "https",
+					"host": [
+						"oauth",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"me",
+						"trophies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a56ea8bb-264f-4c7d-b72e-98185588cf72",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"  pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://oauth.reddit.com/api/v1/me/trophies",
+					"protocol": "https",
+					"host": [
+						"oauth",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"me",
+						"trophies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Preffered setting for Logged in user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d19c59d-a2f6-4916-9746-868e0c07b10e",
+						"exec": [
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type\", function () {\r",
+							"   pm.response.to.have.header(\"Content-Type\");\r",
+							"   pm.response.to.be.header(\"Content-Type\", \"application/json; charset=UTF-8\");\r",
+							"});\r",
+							"let response4=pm.response.json();\r",
+							"pm.environment.set(\"media\",response4.media_preview);\r",
+							"\r",
+							" var jsonData = pm.response.json(); \r",
+							"pm.test(\"Verify Json values\", function () { \r",
+							"    pm.expect(jsonData.media_preview).is.to.equal(\"subreddit\"); \r",
+							"  \r",
+							" });\r",
+							"\r",
+							"//  var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.media_preview).is.to.equal(\"subreddit12345\"); \r",
+							"  \r",
+							"//  });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{redditToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://www.oauth.reddit.com/api/v1/me/prefs",
+					"protocol": "https",
+					"host": [
+						"www",
+						"oauth",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"me",
+						"prefs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04da44dd-ce87-42f6-8554-fc6c4674adac",
+						"exec": [
+							"// var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//   pm.response.to.have.status(200);\r",
+							"// });\r",
+							"// pm.test(\"Content-Type\", function () {\r",
+							"//    pm.response.to.have.header(\"Content-Type\");\r",
+							"//    pm.response.to.be.header(\"Content-Type\", \"application/json; charset=UTF-8\");\r",
+							"// });\r",
+							"// let response4=pm.response.json();\r",
+							"// pm.environment.set(\"media\",response4.media_preview);\r",
+							"\r",
+							"//  var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.media_preview).is.to.equal(\"subreddit\"); \r",
+							"  \r",
+							"//  });\r",
+							"\r",
+							"//  var jsonData = pm.response.json(); \r",
+							"// pm.test(\"Verify Json values\", function () { \r",
+							"//     pm.expect(jsonData.media_preview).is.to.equal(\"subreddit12345\"); \r",
+							"  \r",
+							"//  });\r",
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://www.oauth.reddit.com/api/v1/me/prefs",
+					"protocol": "https",
+					"host": [
+						"www",
+						"oauth",
+						"reddit",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"me",
+						"prefs"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
